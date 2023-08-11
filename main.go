@@ -1,13 +1,20 @@
 package main
 
 import (
-	"github.com/RaymondCode/simple-demo/service"
+	"github.com/YottaHub/ticktick/service"
   "github.com/YottaHub/ticktick/database"
 	"github.com/gin-gonic/gin"
+  "fmt"
+  "os"
 )
 
 func main() {
 	go service.RunMessageServer()
+
+  if err := databse.Init(); err != nil {
+    fmt.Println("Failed to connect db")
+    os.Exit(-1)
+  }
 
 	r := gin.Default()
 
